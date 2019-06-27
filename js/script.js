@@ -12,4 +12,4 @@ let moviesList =
         React.createElement('ul', {}, moviesElements)
     );    
 
-ReactDOM.render(moviesList, document.getElementById('app'));
+ReactDOM.render(moviesList, document.getElementById('app')); 
