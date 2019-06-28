@@ -4,9 +4,9 @@ let MovieTitle = React.createClass ({
     },
 
     render: function() {
+        console.log("propsy", this.props)
         return (
-            React.createElement('h2', {}, this.props.movie.title),
-            console.log('hi')
+            React.createElement('h2', {}, this.props.movie.title)
         )
     },
 });
@@ -20,6 +20,7 @@ let Movie = React.createClass({
     render: function() {
         return (
             React.createElement('li', {key: this.props.movie.id},
+                // React.createElement(MovieTitle, {movieTitle: movie.title}),
                 React.createElement('p', {}, this.props.movie.desc),
                 React.createElement('img', {src: this.props.movie.poster})
             )
@@ -29,9 +30,7 @@ let Movie = React.createClass({
 
 
 const moviesElements = movies.map(function(movie) {
-    return  React.createElement(Movie, {movie: movie},
-        React.createElement(MovieTitle, {movieTitle: movie})
-        );
+    return  React.createElement(Movie, {key: movie.id, movie: movie});
 });
 
 // let element = React.createElement(Movie, {key: movie_id,});
