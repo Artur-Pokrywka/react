@@ -1,22 +1,16 @@
-let GalleryItem = React.createClass({
-    propTypes: {
-        image: React.PropTypes.object.isRequired,
-    },
+var rootElement =
+  React.createElement('div', {}, 
+    React.createElement('h1', {}, "Contacts"),
+    React.createElement('ul', {},
+      React.createElement('li', {},
+        React.createElement('h2', {}, "James Nelson"),
+        React.createElement('a', {href: 'mailto:james@jamesknelson.com'}, 'james@jamesknelson.com')
+      ),
+      React.createElement('li', {},
+        React.createElement('h2', {}, "Joe Citizen"),
+        React.createElement('a', {href: 'mailto:joe@example.com'}, 'joe@example.com')
+      )
+    )
+  )
 
-    render: function(){
-        return (
-            React.createElement('div', {},
-                React.createElement('h2', {}, this.props.image.name),
-                React.createElement('img', {src: this.props.image.src})
-            )
-        )
-    },
-});
-
-let image = {
-    name: 'Kotek',
-    src: 'http://imgur.com/n8OYCzR.png'
-};
-
-let element = React.createElement(GalleryItem, {image: image});
-ReactDOM.render(element, document.getElementById('app'));
+ReactDOM.render(rootElement, document.getElementById('app'))
