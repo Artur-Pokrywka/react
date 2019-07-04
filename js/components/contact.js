@@ -8,7 +8,7 @@ let Contact = React.createClass({
             React.createElement('li', {className: 'contactItem'},
                 React.createElement('img', {
                     className: "contactImage",
-                    src: 'https://picsum.photos/200'
+                    src: 'https://picsum.photos/200'   // link z Kodilli nie działał 
                 }),
                 React.createElement('p', {className: 'contactLabel'}, 'Imię: ' + this.props.item.firstName),
                 React.createElement('p', {className: 'contactLabel'}, 'Nazwisko: ' + this.props.item.lastName),
