@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.18",
+    "babel-standalone": "^6.26.0",
     "chokidar": "^2.1.2",
     "postcss-cli-simple": "^3.0.0",
     "slug": "^1.0.0",
