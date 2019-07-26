@@ -27,4 +27,7 @@ render: function() {
 });
 
 let element = React.createElement(Counter);
+let secondElement = React.createElement(Counter);
+
 ReactDOM.render(element, document.getElementById('app'));
+ReactDOM.render(secondElement, document.getElementById('app2'));
