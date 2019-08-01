@@ -6,10 +6,10 @@ console.log(a,b);
 
 
 // ZADANIE 2
-multiply = (a, b) => {return a * b || a * 1};
+multiply = (a, b=1) => {return a * b};
 
-console.log(multiply(4,6));
-console.log(multiply(6));
+console.log(multiply(3,7));
+console.log(multiply(9));
 
 
 // ZADANIE 3
