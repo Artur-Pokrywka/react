@@ -36,6 +36,9 @@ App = React.createClass({
                     };
                     callback(gif);
             }
+            else {
+                console.log('error')
+            };
         };
         xhr.send();
     },
@@ -50,7 +53,7 @@ App = React.createClass({
 
         return (
             <div style={styles}>
-                <h1>Wyszukiwarka gifów</h1>
+                <h1>Wyszukiwarka GIFów!</h1>
                 <p>Znajdź gifa na <a href='http://giphy.com'>giphy</a>. Naciskaj enter, aby pobrać kolejne gify.</p>
                 <Search onSearch={this.handleSearch} />
                 <Gif 
