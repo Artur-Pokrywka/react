@@ -1,14 +1,14 @@
 const GIPHY_API_URL = 'https://api.giphy.co';
 const GIPHY_PUB_KEY = 'fO1VOAOqD4XV6bdDHJ9Q8DJ5NfEtChVv';
 
-const connectionFail = 'https://media.giphy.com/media/EFXGvbDPhLoWs/giphy.gif';
 
 App = React.createClass({
     getInitialState() {
         return {
             loading: false,
             searchingText: '',
-            gif: {}
+            gif: {},
+            error: {}   
         };
     },
 
@@ -20,7 +20,8 @@ App = React.createClass({
             this.setState({
                 loading: false,
                 gif: gif,
-                searchingText: searchingText
+                searchingText: searchingText,
+                error: {}
             });
         }.bind(this));
     },
@@ -40,11 +41,10 @@ App = React.createClass({
             }
         };
         xhr.onerror = function() {
-            console.log('Loading error');
-            // console.log(gif);
-            let gif = {
-                url: connectionFail
-            }
+            callback(new Error ({
+                error: console.log('nie działa')
+            }));
+            // console.log('Loading error');
         }
         xhr.send();
     },
