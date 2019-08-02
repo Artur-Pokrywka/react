@@ -14,13 +14,13 @@ console.log(multiply(9));
 
 // ZADANIE 3
 const reducer = (accumulator, currentValue) => accumulator + currentValue;
-average = (...args) => args.reduce(reducer)/args.length;
+const average = (...args) => args.reduce(reducer) / args.length;
 
 console.log(average(4, 6, 8, 10));
 
 // ZADANIE 4
 const grades = [1, 5, 5, 5, 4, 3, 3, 2, 1];
-average = (...args) => args.reduce(reducer)/args.length;
+const average = (...args) => args.reduce(reducer) / args.length;
 
 console.log(average(11, ...grades));
 
