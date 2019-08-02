@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "babel": {
+    "presets": [
+      "latest"
+    ]
+  },
   "scripts": {
+    "start": "babel script.js --watch --out-file script-compiled.js",
     "test": "npm-run-all test:*",
     "test:html": "globstar nu-html-checker *.html",
     "init-project": "npm install && npm-run-all init:*",
@@ -32,6 +38,9 @@
   "homepage": "https://github.com/pokrywkaart/learning-git-2#readme",
   "devDependencies": {
     "autoprefixer-cli": "^1.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
     "braces": "^2.3.2",
     "browser-sync": "^2.26.3",
     "globstar": "^1.0.0",
