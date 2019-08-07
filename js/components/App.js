@@ -8,7 +8,7 @@ App = React.createClass({
             loading: false,
             searchingText: '',
             gif: {},
-            error: {}   
+            error: undefined
         };
     },
 
@@ -16,12 +16,12 @@ App = React.createClass({
         this.setState({
             loading: true
         });
-        this.getGif(searchingText, function(gif) {
+        this.getGif(searchingText, function(err, gif) {
             this.setState({
                 loading: false,
-                gif: gif,
                 searchingText: searchingText,
-                error: {}
+                error: err ? err.message : undefined,
+                gif: err ? undefined : gif
             });
         }.bind(this));
     },
@@ -37,14 +37,13 @@ App = React.createClass({
                         url: data.fixed_width_downsampled_url,
                         sourceUrl: data.url
                     };
-                    callback(gif);
+                    callback(err, gif);
             }
         };
         xhr.onerror = function() {
             callback(new Error ({
-                error: console.log('nie działa')
+                error: 'nie działa'
             }));
-            // console.log('Loading error');
         }
         xhr.send();
     },
@@ -67,6 +66,7 @@ App = React.createClass({
                     url={this.state.gif.url}
                     sourceUrl={this.state.gif.sourceUrl}
                 />
+                <p>{this.state.err}</p>
             </div>
         );
     }
