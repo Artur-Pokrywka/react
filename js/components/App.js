@@ -1,4 +1,4 @@
-const GIPHY_API_URL = 'https://api.giphy.co';
+const GIPHY_API_URL = 'https://api.giphy.com';
 const GIPHY_PUB_KEY = 'fO1VOAOqD4XV6bdDHJ9Q8DJ5NfEtChVv';
 
 
@@ -37,12 +37,12 @@ App = React.createClass({
                         url: data.fixed_width_downsampled_url,
                         sourceUrl: data.url
                     };
-                    callback(err, gif);
+                    callback(undefined, gif);
             }
         };
         xhr.onerror = function() {
             callback(new Error ({
-                error: 'nie działa'
+                error: 'Nie działa'
             }));
         }
         xhr.send();
@@ -66,7 +66,7 @@ App = React.createClass({
                     url={this.state.gif.url}
                     sourceUrl={this.state.gif.sourceUrl}
                 />
-                <p>{this.state.err}</p>
+                <p>error</p>
             </div>
         );
     }
