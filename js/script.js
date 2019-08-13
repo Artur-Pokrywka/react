@@ -34,13 +34,12 @@ class Stopwatch {
             this.running = true;
             this.watch = setInterval(() => this.step(), 10);
         }
-        console.log('hi')
     }
     
     step() {
         if (!this.running) return;
         this.calculate();
-        this.print;
+        this.print();
     }
     
     calculate() {
@@ -58,7 +57,6 @@ class Stopwatch {
     stop() {
         this.running = false;
         clearInterval(this.watch);
-        console.log('h0')
     }
 }
 
