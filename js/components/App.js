@@ -1,4 +1,4 @@
-const GIPHY_API_URL = 'https://api.giphy.co';
+const GIPHY_API_URL = 'https://api.giphy.com';
 const GIPHY_PUB_KEY = 'fO1VOAOqD4XV6bdDHJ9Q8DJ5NfEtChVv';
 
 
@@ -41,9 +41,8 @@ App = React.createClass({
             }
         };
         xhr.onerror = function() {
-            callback(err, undefined ({
-                error: error.message = 'Nie działa'
-            }));
+            const err = new Error('nie działa');
+            callback(err);
         }
         xhr.send();
     },
@@ -55,18 +54,21 @@ App = React.createClass({
             textAlign: 'center',
             width: '90%'
         };
-
+        
         return (
             <div style={styles}>
                 <h1>Wyszukiwarka GIFów!</h1>
                 <p>Znajdź gifa na <a href='http://giphy.com'>giphy</a>. Naciskaj enter, aby pobrać kolejne gify.</p>
                 <Search onSearch={this.handleSearch} />
-                <Gif 
-                    loading={this.state.loading}
-                    url={this.state.gif.url}
-                    sourceUrl={this.state.gif.sourceUrl}   
-                />      
-                <p>error</p>         
+                {
+                    this.state.error ? 
+                        <p>{this.state.error}</p> : 
+                        <Gif 
+                            loading={this.state.loading}
+                            url={this.state.gif.url}
+                            sourceUrl={this.state.gif.sourceUrl}   
+                        /> 
+                }            
             </div>
         );
     }
