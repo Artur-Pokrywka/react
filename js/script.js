@@ -1,9 +1,12 @@
-class Stopwatch {
+class Stopwatch extends React.Component {
     constructor(display) {
-        this.running = false;
-        this.display = display;
-        this.reset();
-        this.print(this.times);
+        super(display);
+        this.state = {
+            running: false,
+            display: display
+        }
+        this.reset()
+        this.print(this.times)
     }
 
     reset() {
@@ -19,14 +22,14 @@ class Stopwatch {
     }
 
     format(times) {
-        return `${pad0(times.minutes)}:${pad0(times.seconds)}:${pad0(Math.floor(times.miliseconds))}`;
-        function pad0(value) {
+        let pad0 = (value) => {
             let result = value.toString();
             if (result.length < 2) {
                 result = '0' + result;
             }
             return result;
-        }
+        };
+        return `${pad0(times.minutes)}:${pad0(times.seconds)}:${pad0(Math.floor(times.miliseconds))}`;
     }  
 
     start() {
@@ -58,16 +61,24 @@ class Stopwatch {
         this.running = false;
         clearInterval(this.watch);
     }
+
+    clear() {
+        this.running = false;
+        this.reset();
+        this.print(this.times);
+    }
 }
 
 
 const stopwatch = new Stopwatch(document.querySelector('.stopwatch'));
 
-let startButoon = document.getElementById('start');
+const startButoon = document.getElementById('start');
 startButoon.addEventListener('click', () => stopwatch.start());
 
 
-let stopButton = document.getElementById('stop');
+const stopButton = document.getElementById('stop');
 stopButton.addEventListener('click', () => stopwatch.stop());
 
 
+const resetButton = document.getElementById('clear');
+resetButton.addEventListener('click', () => stopwatch.clear());
