@@ -3,10 +3,14 @@ class Stopwatch extends React.Component {
         super(display);
         this.state = {
             running: false,
-            display: display
+            txt: 'hello world',
+            display: display,   
+           
         }
+       
+        // this.print(this.times),
+        
         this.reset()
-        this.print(this.times)
     }
 
     reset() {
@@ -15,10 +19,12 @@ class Stopwatch extends React.Component {
             seconds: 0,
             miliseconds: 0 
         };
+        console.log('times', this.times)
     }
 
     print() {
         this.display.innerText = this.format(this.times);
+      
     }
 
     format(times) {
@@ -67,18 +73,29 @@ class Stopwatch extends React.Component {
         this.reset();
         this.print(this.times);
     }
+    render() {
+        return (
+            <div>
+                <Controls />
+                <ul>{this.state.times}</ul>
+                <p>{this.state.txt}</p>
+            </div>
+            
+        );
+    }
 }
 
+ReactDOM.render(<Stopwatch />, document.getElementById('root'));
 
-const stopwatch = new Stopwatch(document.querySelector('.stopwatch'));
+// const stopwatch = new Stopwatch(document.querySelector('.stopwatch'));
 
-const startButoon = document.getElementById('start');
-startButoon.addEventListener('click', () => stopwatch.start());
-
-
-const stopButton = document.getElementById('stop');
-stopButton.addEventListener('click', () => stopwatch.stop());
+// const startButoon = document.getElementById('start');
+// startButoon.addEventListener('click', () => stopwatch.start());
 
 
-const resetButton = document.getElementById('clear');
-resetButton.addEventListener('click', () => stopwatch.clear());
+// const stopButton = document.getElementById('stop');
+// stopButton.addEventListener('click', () => stopwatch.stop());
+
+
+// const resetButton = document.getElementById('clear');
+// resetButton.addEventListener('click', () => stopwatch.clear());
