@@ -5,25 +5,22 @@ class Stopwatch extends React.Component {
             running: false,
             txt: 'hello world',
             display: display,   
-           
+            // print: print(),
+            // reset: reset()
         }
-       
-        // this.print(this.times),
-        
-        this.reset()
     }
 
     reset() {
-        this.times = {
+        this.state.times = {
             minutes: 0,
             seconds: 0,
             miliseconds: 0 
         };
-        console.log('times', this.times)
+        console.log('times', this.state.times)
     }
 
     print() {
-        this.display.innerText = this.format(this.times);
+        this.state.display.innerText = this.format(this.state.times);
       
     }
 
@@ -39,9 +36,13 @@ class Stopwatch extends React.Component {
     }  
 
     start() {
+        console.log('this is working');
         if (!this.running) {
-            this.running = true;
-            this.watch = setInterval(() => this.step(), 10);
+            this.state = {
+                running: true
+            }
+          
+            this.state.watch = setInterval(() => this.step(), 10);
         }
     }
     
@@ -68,15 +69,22 @@ class Stopwatch extends React.Component {
         clearInterval(this.watch);
     }
 
+    
     clear() {
         this.running = false;
         this.reset();
         this.print(this.times);
     }
+    
+
     render() {
         return (
             <div>
-                <Controls />
+                <nav>
+                    <button onClick={this.start}> Start </button>
+                    <button onClick={this.stop}> Stop </button>
+                    <button onClick={this.clear}> Clear </button>
+                </nav>
                 <ul>{this.state.times}</ul>
                 <p>{this.state.txt}</p>
             </div>
@@ -86,16 +94,3 @@ class Stopwatch extends React.Component {
 }
 
 ReactDOM.render(<Stopwatch />, document.getElementById('root'));
-
-// const stopwatch = new Stopwatch(document.querySelector('.stopwatch'));
-
-// const startButoon = document.getElementById('start');
-// startButoon.addEventListener('click', () => stopwatch.start());
-
-
-// const stopButton = document.getElementById('stop');
-// stopButton.addEventListener('click', () => stopwatch.stop());
-
-
-// const resetButton = document.getElementById('clear');
-// resetButton.addEventListener('click', () => stopwatch.clear());
