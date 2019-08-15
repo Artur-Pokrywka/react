@@ -3,28 +3,38 @@ class Stopwatch extends React.Component {
         super(props);
         this.state = {
             running: false,
-            time:  `00 : 00 : 00 `,
-            start: 0,
-        }
+            time: 0,
+           
+        };
         this.start = this.start.bind(this)
         this.stop = this.stop.bind(this)
         this.clear = this.stop.bind(this)
     }
 
     start() {
-        
         this.setState = ({
             running: true,
-            time: this.state.time,
-            start: Date.now() - this.state.time
+            time: this.state.time,    
         })
-        this.timer = setInterval( () => this.setState({
-            time: Date.now() - this.state.start
-        }), 1);
-        
-        console.log('stan', this.state)
+        this.timer = setInterval(() =>  {
+            this.setState = ({
+                time: this.state.time + 1
+            }) 
+            console.log('stan', this.state.time)
+        }, 
+        1000);
+
+        console.log('stan', this.state.time)
     }
     
+    // clock() {
+    //     console.log('stan', this.state.time)
+    //     this.setState = ({
+    //         time: this.state.time + 1
+    //     })    
+    // } 
+      
+
     stop() {
         this.setState = ({
             running: false
@@ -38,7 +48,7 @@ class Stopwatch extends React.Component {
         if (this.state.time != 0) {
             this.setState = ({
                 running: false,
-                time:  `00 : 00 : 00 `
+                time: 0
             })
         }
         console.log('stan', this.state)
@@ -53,7 +63,7 @@ class Stopwatch extends React.Component {
                     <button onClick={this.stop}> Stop </button>
                     <button onClick={this.clear}> Clear </button>
                 </nav>
-                <p>{this.state.time}</p>
+                <p>{this.state.time} sec</p>
             </div>
             
         );
