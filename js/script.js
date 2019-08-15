@@ -3,55 +3,45 @@ class Stopwatch extends React.Component {
         super(props);
         this.state = {
             running: false,
-            time: 0,
-           
+            miliseconds: 0,
+            seconds: 0, 
+            minutes: 0  
         };
         this.start = this.start.bind(this)
         this.stop = this.stop.bind(this)
-        this.clear = this.stop.bind(this)
+        this.clear = this.clear.bind(this)
     }
 
     start() {
-        this.setState = ({
+        this.setState ({
             running: true,
-            time: this.state.time,    
+            miliseconds: this.state.miliseconds    
         })
         this.timer = setInterval(() =>  {
-            this.setState = ({
-                time: this.state.time + 1
+            this.setState ({
+                miliseconds: this.state.miliseconds + 1
             }) 
-            console.log('stan', this.state.time)
-        }, 
-        1000);
+        }, 1);
+    } 
 
-        console.log('stan', this.state.time)
-    }
-    
-    // clock() {
-    //     console.log('stan', this.state.time)
-    //     this.setState = ({
-    //         time: this.state.time + 1
-    //     })    
-    // } 
-      
 
     stop() {
-        this.setState = ({
+        this.setState ({
             running: false
         })
         clearInterval(this.timer)
-
-        console.log('stan', this.state)
     }
 
     clear() {
         if (this.state.time != 0) {
-            this.setState = ({
+            this.setState ({
                 running: false,
-                time: 0
+                miliseconds: 0,
+                seconds: 0,
+                minutes: 0
             })
         }
-        console.log('stan', this.state)
+        // console.log('stan', this.state)
     }
     
 
@@ -63,9 +53,12 @@ class Stopwatch extends React.Component {
                     <button onClick={this.stop}> Stop </button>
                     <button onClick={this.clear}> Clear </button>
                 </nav>
-                <p>{this.state.time} sec</p>
-            </div>
-            
+                <p>
+                    {this.state.minutes} :
+                    {this.state.seconds} : 
+                    {this.state.miliseconds} milisec
+                </p>
+            </div>    
         );
     }
 }
