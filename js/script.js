@@ -3,15 +3,26 @@ class Stopwatch extends React.Component {
         super(props);
         this.state = {
             running: false,
-            miliseconds: 0,
-            seconds: 0, 
-            minutes: 0  
+            miliseconds: this.pad0(0),
+            seconds: this.pad0(0), 
+            minutes: this.pad0(0)  
         };
         this.start = this.start.bind(this)
         this.stop = this.stop.bind(this)
         this.clear = this.clear.bind(this)
         this.calculate = this.calculate.bind(this)
+        this.pad0 = this.pad0.bind(this)
     }
+
+
+    pad0(value) {
+        let result = value.toString();
+        if (result.length < 2) {
+            result = '0' + result;
+        }
+        return result;
+    }
+
 
     start() {
         this.setState ({
@@ -19,28 +30,23 @@ class Stopwatch extends React.Component {
             miliseconds: this.state.miliseconds    
         })
         this.timer = setInterval(() =>  {
-            this.setState ({
-                miliseconds: this.calculate(),
-                // calculate: this.calculate()
-            })    
+            this.calculate();   
         }, 1);
     } 
 
 
     calculate() {
         this.setState({
-            miliseconds:  this.miliseconds += 1
+            miliseconds: this.state.miliseconds + 1,
         })
-       
-        // if (this.miliseconds >= 100) {
-        //     this.seconds += 1;
-        //     this.miliseconds = 0;
-        // }
-        // if (this.seconds >= 60) {
-        //     this.minutes += 1;
-        //     this.seconds = 0;
-        // }
-        console.log('hello')
+        if (this.state.miliseconds >= 100) {
+            this.state.seconds += 1;
+            this.state.miliseconds = 0;
+        }
+        if (this.seconds >= 60) {
+            this.minutes += 1;
+            this.seconds = 0;
+        }
     }
 
 
@@ -51,19 +57,18 @@ class Stopwatch extends React.Component {
         clearInterval(this.timer)
     }
 
+
     clear() {
-        if (this.state.time != 0) {
+        if (this.state.miliseconds != 0) {
             this.setState ({
                 running: false,
-                miliseconds: 0,
-                seconds: 0,
-                minutes: 0
+                miliseconds: this.pad0(0),
+                seconds: this.pad0(0),
+                minutes: this.pad0(0)
             })
         }
-        // console.log('stan', this.state)
     }
     
-
 
     render() {
         return (
@@ -74,9 +79,9 @@ class Stopwatch extends React.Component {
                     <button onClick={this.clear}> Clear </button>
                 </nav>
                 <p>
-                    {this.state.minutes} :
-                    {this.state.seconds} : 
-                    {this.state.miliseconds} milisec
+                    <span>{this.state.minutes} : </span> 
+                    <span>{this.state.seconds} : </span> 
+                    <span>{this.state.miliseconds} </span> 
                 </p>
             </div>    
         );
