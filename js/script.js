@@ -10,6 +10,7 @@ class Stopwatch extends React.Component {
         this.start = this.start.bind(this)
         this.stop = this.stop.bind(this)
         this.clear = this.clear.bind(this)
+        this.calculate = this.calculate.bind(this)
     }
 
     start() {
@@ -19,10 +20,28 @@ class Stopwatch extends React.Component {
         })
         this.timer = setInterval(() =>  {
             this.setState ({
-                miliseconds: this.state.miliseconds + 1
-            }) 
+                miliseconds: this.calculate(),
+                // calculate: this.calculate()
+            })    
         }, 1);
     } 
+
+
+    calculate() {
+        this.setState({
+            miliseconds:  this.miliseconds += 1
+        })
+       
+        // if (this.miliseconds >= 100) {
+        //     this.seconds += 1;
+        //     this.miliseconds = 0;
+        // }
+        // if (this.seconds >= 60) {
+        //     this.minutes += 1;
+        //     this.seconds = 0;
+        // }
+        console.log('hello')
+    }
 
 
     stop() {
@@ -44,6 +63,7 @@ class Stopwatch extends React.Component {
         // console.log('stan', this.state)
     }
     
+
 
     render() {
         return (
