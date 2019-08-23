@@ -33,6 +33,7 @@
   "homepage": "https://github.com/pokrywkaart/learning-git-2#readme",
   "devDependencies": {
     "autoprefixer-cli": "^1.0.0",
+    "babel-polyfill": "^6.26.0",
     "braces": "^2.3.2",
     "browser-sync": "^2.26.3",
     "globstar": "^1.0.0",

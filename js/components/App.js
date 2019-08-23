@@ -26,25 +26,54 @@ App = React.createClass({
         }.bind(this));
     },
 
-    getGif: function(searchingText, callback) {
+    // getGif: function(searchingText, callback) {
+    //     const url = GIPHY_API_URL + '/v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchingText;
+    //     let xhr = new XMLHttpRequest();
+    //     xhr.open('GET', url);
+    //     xhr.onload = function() {
+    //         if (xhr.status === 200) {
+    //             let data = JSON.parse(xhr.responseText).data;
+    //                 let gif = {
+    //                     url: data.fixed_width_downsampled_url,
+    //                     sourceUrl: data.url
+    //                 };
+    //                 callback(undefined, gif);
+    //         }
+    //     };
+    //     xhr.onerror = function() {
+    //         const err = new Error('nie działa');
+    //         callback(err);
+    //     }
+    //     xhr.send();
+    // },
+
+    getGif : function(searchingText, callback) {
         const url = GIPHY_API_URL + '/v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchingText;
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', url);
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                let data = JSON.parse(xhr.responseText).data;
+        return new Promise(
+            function(resolve, reject) {
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', url);
+                xhr.onload = function() {
+                    let data = JSON.parse(xhr.responseText).data;
                     let gif = {
                         url: data.fixed_width_downsampled_url,
                         sourceUrl: data.url
-                    };
-                    callback(undefined, gif);
+                        };
+                    if (xhr.status === 200) {
+                        resolve(gif);
+                    } else {
+                        reject(err);
+                    }
+                };
+                xhr.onerror = function() {
+                    reject(new Error('nie działa'))
+                };
+
+                
+                xhr.send();
             }
-        };
-        xhr.onerror = function() {
-            const err = new Error('nie działa');
-            callback(err);
-        }
-        xhr.send();
+
+        )
     },
 
     render: function() {
