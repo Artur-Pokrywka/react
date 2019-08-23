@@ -16,14 +16,19 @@ App = React.createClass({
         this.setState({
             loading: true
         });
-        this.getGif(searchingText, function(err, gif) {
-            this.setState({
-                loading: false,
-                searchingText: searchingText,
-                error: err ? err.message : undefined,
-                gif: err ? undefined : gif
-            });
-        }.bind(this));
+        // this.getGif(searchingText, function(err, gif) {
+        //     this.setState({
+        //         loading: false,
+        //         searchingText: searchingText,
+        //         error: err ? err.message : undefined,
+        //         gif: err ? undefined : gif
+        //     });
+        // }.bind(this));
+        this.getGif(searchingText)
+        .then(response => {this.gif})
+        .catch(error => {this.error})
+        console.log('gif', gif)
+        console.log('err', error)  
     },
 
     // getGif: function(searchingText, callback) {
@@ -47,31 +52,38 @@ App = React.createClass({
     //     xhr.send();
     // },
 
-    getGif : function(searchingText, callback) {
+    getGif : function(searchingText) {
         const url = GIPHY_API_URL + '/v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchingText;
         const xhr = new XMLHttpRequest();
+        // console.log('url', url)
+        // console.log('xhr', xhr)
         return new Promise(
             function(resolve, reject) {
                 xhr.open('GET', url);
                 xhr.onload = function() {
                     let data = JSON.parse(xhr.responseText).data;
+                    console.log('data', data)
                     let gif = {
                         url: data.fixed_width_downsampled_url,
                         sourceUrl: data.url
-                        };
+                        };      
                     if (xhr.status === 200) {
-                        resolve(gif);
+                        resolve(this.gif);
+                        console.log('gif', gif) 
                     } else {
-                        reject(err);
+                        reject(new Error
+                        ('bardzo nie działa'));
                     }
                 };
                 xhr.onerror = function() {
-                    reject(new Error('nie działa'))
+                    reject(new Error
+                        ('nie działa'));
                 };
                 xhr.send();
             }
         )
     },
+
 
     render: function() {
 
