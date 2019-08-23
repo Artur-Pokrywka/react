@@ -49,9 +49,9 @@ App = React.createClass({
 
     getGif : function(searchingText, callback) {
         const url = GIPHY_API_URL + '/v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchingText;
+        const xhr = new XMLHttpRequest();
         return new Promise(
             function(resolve, reject) {
-                const xhr = new XMLHttpRequest();
                 xhr.open('GET', url);
                 xhr.onload = function() {
                     let data = JSON.parse(xhr.responseText).data;
@@ -68,11 +68,8 @@ App = React.createClass({
                 xhr.onerror = function() {
                     reject(new Error('nie działa'))
                 };
-
-                
                 xhr.send();
             }
-
         )
     },
 
