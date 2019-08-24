@@ -1,15 +1,22 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Apka Reactowa!</title>
-  </head>
-  <body>
-    <div id="app"></div>
+<!doctype html>
+<html lang="pl">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
 
-    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
-    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
 
-    <script type="text/javascript" src="script.js"></script>
-  </body>
-</html> 
+    <!-- <script>
+      var App, UsersList
+    </script> -->
+    
+    <script type="text/babel"  src="js/components/UsersList.js"></script>
+    <script type="text/babel"  src="js/components/App.js"></script>
+    <script type="text/babel"  src="js/build.js"></script>
+</body>
+</html>
