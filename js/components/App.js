@@ -17,18 +17,21 @@ App = React.createClass({
             loading: true
         });
         this.getGif(searchingText)
-        .then(response => {this.setState ({
+        .then(response => {
+            console.log('gif1', response)
+                        this.setState ({
                            loading: false,
                            searchingText: searchingText,
-                           gif: this.state.gif,
+                           gif: response,
                         //    error: undefined     
                         })
-                        console.log('gif1', this.state.gif)
+                        
             })
-        .catch(error => {this.setState ({
+        .catch(error => {
+                        this.setState ({
                             loading: false,
                             searchingText: searchingText,
-                            error: 'Nie działa'
+                            error: 'Coś poszło nie tak '
                         })
                 })        
     },
@@ -49,10 +52,8 @@ App = React.createClass({
                         };      
                     if (xhr.status === 200) {
                         resolve(gif);
-                        console.log('gif', gif)
                     } else {
-                        reject(new Error
-                        ('bardzo nie działa'));
+                        reject(error);
                     }
                 };
                 xhr.onerror = function() {
