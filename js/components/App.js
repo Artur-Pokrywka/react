@@ -1,4 +1,4 @@
-class App extends React.Component {
+App = class App extends React.Component {
     constructor() {
       super();
       this.state = {
