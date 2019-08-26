@@ -8,7 +8,7 @@ App = React.createClass({
             loading: false,
             searchingText: '',
             gif: {},
-            error: undefined
+            error: null
         };
     },
 
@@ -23,7 +23,7 @@ App = React.createClass({
                            loading: false,
                            searchingText: searchingText,
                            gif: response,
-                        //    error: undefined     
+                           error: null    
                         })
                         
             })
