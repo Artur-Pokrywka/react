@@ -1,4 +1,4 @@
-const GIPHY_API_URL = 'https://api.giphy.com';
+const GIPHY_API_URL = 'https://api.giphy.co';
 const GIPHY_PUB_KEY = 'fO1VOAOqD4XV6bdDHJ9Q8DJ5NfEtChVv';
 
 
@@ -25,10 +25,21 @@ App = React.createClass({
         //     });
         // }.bind(this));
         this.getGif(searchingText)
-        .then(response => {this.gif})
-        .catch(error => {this.error})
-        console.log('gif', gif)
-        console.log('err', error)  
+        .then(response => {this.setState ({
+                           loading: false,
+                           searchingText: searchingText,
+                           gif: this.state.gif,
+                           error: undefined     
+                })
+                        // console.log('gif', gif)
+            })
+        .catch(error => {this.setState ({
+                            loading: false,
+                            searchingText: searchingText,
+                            error: 'Nie działa'
+                        })
+                        // console.log('gif', gif)
+                })        
     },
 
     // getGif: function(searchingText, callback) {
@@ -68,8 +79,7 @@ App = React.createClass({
                         sourceUrl: data.url
                         };      
                     if (xhr.status === 200) {
-                        resolve(this.gif);
-                        console.log('gif', gif) 
+                        resolve(this.response);
                     } else {
                         reject(new Error
                         ('bardzo nie działa'));
@@ -101,11 +111,13 @@ App = React.createClass({
                 {
                     this.state.error ? 
                         <p>{this.state.error}</p> : 
-                        <Gif 
-                            loading={this.state.loading}
-                            url={this.state.gif.url}
-                            sourceUrl={this.state.gif.sourceUrl}   
-                        /> 
+
+                        <p>{this.gif}</p>
+                        // <Gif 
+                        //     loading={this.state.loading}
+                        //     url={this.state.gif.url}
+                        //     sourceUrl={this.state.gif.sourceUrl}   
+                        // /> 
                 }            
             </div>
         );
